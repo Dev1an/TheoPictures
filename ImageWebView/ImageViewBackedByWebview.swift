@@ -5,7 +5,7 @@
 //  Created by Damiaan on 19/11/2021.
 //
 
-protocol ImageViewBackedByWebview {
+public protocol ImageViewBackedByWebview {
 	/** Generates an ImageViewBackedByWebview. (A view, that's backed by a webview which loads an image from https://picsum.photos/200/300 immediately) */
 	static func generate(width: Int, height: Int) -> ImageViewBackedByWebview
 

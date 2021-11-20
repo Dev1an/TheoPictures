@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import ImageWebView
 
-let colors = ["red", "orange", "yellow", "green", "blue"]
+fileprivate let colors = ["red", "orange", "yellow", "green", "blue"]
 
 class ViewController: UIViewController {
 
@@ -23,7 +24,6 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func changeColor(_ sender: Any) {
-		imageView.changeBackground(color: colors.randomElement()!) { result, error in
-		}
+		imageView.changeBackground(color: colors.randomElement()!, completionHandler: nil)
 	}
 }

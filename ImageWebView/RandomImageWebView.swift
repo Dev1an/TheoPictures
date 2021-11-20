@@ -8,24 +8,24 @@
 import UIKit
 import WebKit
 
-class RandomImageWebView: WKWebView {
-	enum Error: Swift.Error {
+public class RandomImageWebView: WKWebView {
+	public enum Error: Swift.Error {
 		case illegalCssColor(String)
 	}
 
-	func imageUrl(width: Int, height: Int) -> URL {
+	public static func imageUrl(width: Int, height: Int) -> URL {
 		URL(string: "https://picsum.photos/\(width)/\(height)")!
 	}
 
-	func loadImage(width: Int, height: Int) {
+	public func loadImage(width: Int, height: Int) {
 		load(
-			URLRequest(url: imageUrl(width: width, height: height))
+			URLRequest(url: Self.imageUrl(width: width, height: height))
 		)
 	}
 }
 
 extension RandomImageWebView: ImageViewBackedByWebview {
-	static func generate(width: Int, height: Int) -> ImageViewBackedByWebview {
+	public static func generate(width: Int, height: Int) -> ImageViewBackedByWebview {
 		let size = CGSize(width: width, height: height)
 		let frame = CGRect(origin: .zero, size: size)
 		let view = RandomImageWebView(frame: frame)
@@ -35,7 +35,7 @@ extension RandomImageWebView: ImageViewBackedByWebview {
 		return view
 	}
 
-	func changeBackground(color: String, completionHandler: ((Bool, Swift.Error?) -> Void)?) {
+	public func changeBackground(color: String, completionHandler: ((Bool, Swift.Error?) -> Void)?) {
 		evaluateJavaScript("document.body.style.backgroundColor = '\(color)'") { result, error in
 			completionHandler?(color == result as? String, error)
 		}
