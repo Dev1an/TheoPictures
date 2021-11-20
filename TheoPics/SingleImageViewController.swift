@@ -10,7 +10,7 @@ import ImageWebView
 
 fileprivate let colors = ["red", "orange", "yellow", "green", "blue"]
 
-class ViewController: UIViewController {
+class SingleImageViewController: UIViewController {
 
 	@IBOutlet weak var imageView: RandomImageWebView!
 

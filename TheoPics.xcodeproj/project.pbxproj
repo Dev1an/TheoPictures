@@ -15,8 +15,9 @@
 		74C40F8C274957FD00E22912 /* ImageWebView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 74C40F76274957FD00E22912 /* ImageWebView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		74C40F942749582000E22912 /* ImageViewBackedByWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E199B22747DE51000643BF /* ImageViewBackedByWebview.swift */; };
 		74C40F952749582000E22912 /* RandomImageWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E199B42747DED5000643BF /* RandomImageWebView.swift */; };
+		74C483AB27497E2900BF4341 /* MultipleViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C483AA27497E2900BF4341 /* MultipleViewControllers.swift */; };
 		74E1999F2747D944000643BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E1999E2747D944000643BF /* AppDelegate.swift */; };
-		74E199A32747D944000643BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E199A22747D944000643BF /* ViewController.swift */; };
+		74E199A32747D944000643BF /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E199A22747D944000643BF /* SingleImageViewController.swift */; };
 		74E199A62747D944000643BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74E199A42747D944000643BF /* Main.storyboard */; };
 		74E199A82747D947000643BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74E199A72747D947000643BF /* Assets.xcassets */; };
 		74E199AB2747D947000643BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74E199A92747D947000643BF /* LaunchScreen.storyboard */; };
@@ -68,9 +69,10 @@
 		74C40F86274957FD00E22912 /* ImageWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWebViewTests.swift; sourceTree = "<group>"; };
 		74C40F9727495D7A00E22912 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		74C40F9927495D8300E22912 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		74C483AA27497E2900BF4341 /* MultipleViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleViewControllers.swift; sourceTree = "<group>"; };
 		74E1999B2747D944000643BF /* TheoPics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheoPics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E1999E2747D944000643BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		74E199A22747D944000643BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		74E199A22747D944000643BF /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		74E199A52747D944000643BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74E199A72747D947000643BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74E199AA2747D947000643BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -159,7 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				74E1999E2747D944000643BF /* AppDelegate.swift */,
-				74E199A22747D944000643BF /* ViewController.swift */,
+				74E199A22747D944000643BF /* SingleImageViewController.swift */,
+				74C483AA27497E2900BF4341 /* MultipleViewControllers.swift */,
 				74E199A42747D944000643BF /* Main.storyboard */,
 				74E199A72747D947000643BF /* Assets.xcassets */,
 				74E199A92747D947000643BF /* LaunchScreen.storyboard */,
@@ -330,7 +333,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E199A32747D944000643BF /* ViewController.swift in Sources */,
+				74E199A32747D944000643BF /* SingleImageViewController.swift in Sources */,
+				74C483AB27497E2900BF4341 /* MultipleViewControllers.swift in Sources */,
 				74E1999F2747D944000643BF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
