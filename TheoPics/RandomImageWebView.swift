@@ -36,9 +36,8 @@ extension RandomImageWebView: ImageViewBackedByWebview {
 	}
 
 	func changeBackground(color: String, completionHandler: ((Bool, Swift.Error?) -> Void)?) {
-		evaluateJavaScript("document.body.backgroundColor = '\(color)'") { result, error in
-			print(result)
-			completionHandler?(false, error)
+		evaluateJavaScript("document.body.style.backgroundColor = '\(color)'") { result, error in
+			completionHandler?(color == result as? String, error)
 		}
 	}
 }

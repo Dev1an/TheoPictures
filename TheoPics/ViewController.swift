@@ -7,6 +7,8 @@
 
 import UIKit
 
+let colors = ["red", "orange", "yellow", "green", "blue"]
+
 class ViewController: UIViewController {
 
 	@IBOutlet weak var imageView: RandomImageWebView!
@@ -18,5 +20,10 @@ class ViewController: UIViewController {
 			width: Int(imageView.frame.width),
 			height: Int(imageView.frame.height)
 		)
+	}
+
+	@IBAction func changeColor(_ sender: Any) {
+		imageView.changeBackground(color: colors.randomElement()!) { result, error in
+		}
 	}
 }
