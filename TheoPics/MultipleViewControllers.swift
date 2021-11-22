@@ -25,25 +25,14 @@ class MultipleImagesViewController: UIViewController {
 	}
 
 	@objc func handleTap(_ sender: UITapGestureRecognizer) {
-		print("tapped")
 	}
 
 	func setup(image: RandomImageWebView) {
 		image.translatesAutoresizingMaskIntoConstraints = false
-		image.constrainSizeToFrameSize()
 		image.addGestureRecognizer(createTapRecognizer())
-		
+
 		// allows the tap recognizer but ignores the rest (scrolling, selections, etc.)
 		image.scrollView.isUserInteractionEnabled = false
-	}
-}
-
-extension UIView {
-	fileprivate func constrainSizeToFrameSize() {
-		addConstraints([
-			widthAnchor.constraint( equalToConstant: frame.width ),
-			heightAnchor.constraint(equalToConstant: frame.height)
-		])
 	}
 }
 

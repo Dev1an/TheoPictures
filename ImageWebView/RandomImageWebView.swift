@@ -9,6 +9,15 @@ import UIKit
 import WebKit
 
 public class RandomImageWebView: WKWebView {
+	var imageSize = CGSize.zero
+
+	public override init(frame: CGRect, configuration: WKWebViewConfiguration = WKWebViewConfiguration()) {
+		super.init(frame: frame, configuration: configuration)
+		imageSize = frame.size
+	}
+
+	required init?(coder: NSCoder) { super.init(coder: coder) }
+
 	public enum Error: Swift.Error {
 		case illegalCssColor(String)
 	}
@@ -25,6 +34,8 @@ public class RandomImageWebView: WKWebView {
 }
 
 extension RandomImageWebView: ImageViewBackedByWebview {
+	public override var intrinsicContentSize: CGSize { imageSize }
+
 	public static func generate(width: Int, height: Int) -> ImageViewBackedByWebview {
 		let size = CGSize(width: width, height: height)
 		let frame = CGRect(origin: .zero, size: size)
@@ -35,7 +46,7 @@ extension RandomImageWebView: ImageViewBackedByWebview {
 		return view
 	}
 
-	public func changeBackground(color: String, completionHandler: ((Bool, Swift.Error?) -> Void)?) {
+	public func changeBackground(color: String, completionHandler: ((Bool, Swift.Error?) -> Void)? = nil) {
 		evaluateJavaScript("document.body.style.backgroundColor = '\(color)'") { result, error in
 			completionHandler?(color == result as? String, error)
 		}
