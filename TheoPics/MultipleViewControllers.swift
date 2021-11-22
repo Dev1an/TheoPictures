@@ -19,12 +19,22 @@ class MultipleImagesViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		imageViews.forEach { image in
-			image.translatesAutoresizingMaskIntoConstraints = false
-			image.constrainSizeToFrameSize()
-		}
+		imageViews.forEach(setup)
 		imageViews[0..<3].forEach(stack1.addArrangedSubview)
 		imageViews[3..<6].forEach(stack2.addArrangedSubview)
+	}
+
+	@objc func handleTap(_ sender: UITapGestureRecognizer) {
+		print("tapped")
+	}
+
+	func setup(image: RandomImageWebView) {
+		image.translatesAutoresizingMaskIntoConstraints = false
+		image.constrainSizeToFrameSize()
+		image.addGestureRecognizer(createTapRecognizer())
+		
+		// allows the tap recognizer but ignores the rest (scrolling, selections, etc.)
+		image.scrollView.isUserInteractionEnabled = false
 	}
 }
 
@@ -34,5 +44,20 @@ extension UIView {
 			widthAnchor.constraint( equalToConstant: frame.width ),
 			heightAnchor.constraint(equalToConstant: frame.height)
 		])
+	}
+}
+
+extension MultipleImagesViewController: UIGestureRecognizerDelegate {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		return true
+	}
+
+	func createTapRecognizer() -> UITapGestureRecognizer {
+		let tapRecognizer = UITapGestureRecognizer(
+			target: self,
+			action: #selector(handleTap)
+		)
+		tapRecognizer.delegate = self
+		return tapRecognizer
 	}
 }
