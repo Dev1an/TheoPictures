@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 public class RandomImageWebView: WKWebView {
-	var imageSize = CGSize.zero
+	var imageSize = CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
 
 	public override init(frame: CGRect, configuration: WKWebViewConfiguration = WKWebViewConfiguration()) {
 		super.init(frame: frame, configuration: configuration)
@@ -26,10 +26,31 @@ public class RandomImageWebView: WKWebView {
 		URL(string: "https://picsum.photos/\(width)/\(height)")!
 	}
 
+	public static func imageDomString(width: Int, height: Int) -> String {
+		"""
+			<head>
+				<meta name="viewport" content="width=device-width">
+				<style>
+					img {
+						width:100vw;
+						height:100vh;
+						object-fit: contain
+					}
+
+					body, html {
+						padding: 0;
+						margin: 0
+					}
+				</style>
+			</head>
+			<body>
+				<img src="\( imageUrl(width: width, height: height).absoluteString )">
+			</body
+		"""
+	}
+
 	public func loadImage(width: Int, height: Int) {
-		load(
-			URLRequest(url: Self.imageUrl(width: width, height: height))
-		)
+		loadHTMLString(Self.imageDomString(width: width, height: height), baseURL: nil)
 	}
 }
 

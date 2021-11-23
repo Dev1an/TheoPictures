@@ -18,14 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="FBP-WP-GAC">
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="FBP-WP-GAC">
                                 <rect key="frame" x="84" y="236.66666666666663" width="207" height="300"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="300" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zu9-zr-u0w">
+                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="300" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zu9-zr-u0w">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="300"/>
                                         <variation key="heightClass=compact" axis="horizontal"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="300" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vw1-Ex-vA9">
+                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="300" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vw1-Ex-vA9">
                                         <rect key="frame" x="107" y="0.0" width="100" height="300"/>
                                         <variation key="heightClass=compact" axis="horizontal"/>
                                     </stackView>
@@ -46,8 +46,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Multiple" id="y6N-an-Vw5"/>
                     <connections>
-                        <outlet property="stack1" destination="zu9-zr-u0w" id="hJN-I9-Fkj"/>
-                        <outlet property="stack2" destination="vw1-Ex-vA9" id="CGs-yr-49o"/>
+                        <outlet property="column1" destination="zu9-zr-u0w" id="hJN-I9-Fkj"/>
+                        <outlet property="column2" destination="vw1-Ex-vA9" id="CGs-yr-49o"/>
+                        <outlet property="columnStack" destination="FBP-WP-GAC" id="HV9-U6-rvY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7U-ay-ymw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -65,8 +66,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="pEF-dX-r8a" kind="relationship" relationship="viewControllers" id="DnN-kn-EtX"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="SNu-Ab-nd9"/>
+                        <segue destination="pEF-dX-r8a" kind="relationship" relationship="viewControllers" id="cmM-Qv-iPR"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="a6a-ux-6s3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIl-qH-p7c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -81,10 +82,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQb-8C-8f5" customClass="RandomImageWebView" customModule="ImageWebView">
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQb-8C-8f5" customClass="RandomImageWebView" customModule="ImageWebView">
                                 <rect key="frame" x="20" y="286.66666666666669" width="335" height="200"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="ROr-x7-5ZI"/>
                                     <constraint firstAttribute="width" secondItem="IQb-8C-8f5" secondAttribute="height" multiplier="67:40" id="SUL-vt-grL"/>
                                 </constraints>
                                 <wkWebViewConfiguration key="configuration">
@@ -92,23 +94,49 @@
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ROr-x7-5ZI"/>
+                                    </mask>
+                                </variation>
                             </wkWebView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usF-jP-YWu">
-                                <rect key="frame" x="99" y="248.66666666666663" width="177" height="30"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Change background color"/>
-                                <connections>
-                                    <action selector="changeColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lel-w4-G4s"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="GIu-nd-zPS">
+                                <rect key="frame" x="87" y="248" width="201" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4g-2V-lYA">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Resize"/>
+                                        <connections>
+                                            <action selector="changeWidth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yr1-fa-OL2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usF-jP-YWu">
+                                        <rect key="frame" x="75" y="0.0" width="57" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Colorize"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lel-w4-G4s"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPu-gu-uth">
+                                        <rect key="frame" x="162" y="0.0" width="39" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Reset"/>
+                                        <connections>
+                                            <action selector="resetColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TWm-2S-wmW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IQb-8C-8f5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" priority="250" constant="20" id="0o0-ck-MTz"/>
-                            <constraint firstItem="usF-jP-YWu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="E12-2O-wCK"/>
-                            <constraint firstItem="IQb-8C-8f5" firstAttribute="top" secondItem="usF-jP-YWu" secondAttribute="bottom" constant="8" symbolic="YES" id="POp-eb-q56"/>
-                            <constraint firstItem="usF-jP-YWu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="RFd-vR-ErX"/>
+                            <constraint firstItem="IQb-8C-8f5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" priority="250" constant="20" id="0o0-ck-MTz" userLabel="padding"/>
+                            <constraint firstItem="GIu-nd-zPS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="JET-v1-OEc"/>
+                            <constraint firstItem="IQb-8C-8f5" firstAttribute="top" secondItem="GIu-nd-zPS" secondAttribute="bottom" constant="8.6666666666666856" id="Pi1-J8-PCK"/>
+                            <constraint firstItem="GIu-nd-zPS" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Stl-qm-9CO"/>
                             <constraint firstItem="IQb-8C-8f5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UnJ-UD-rEq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IQb-8C-8f5" secondAttribute="trailing" constant="20" id="eYK-Sy-ZRX"/>
                             <constraint firstItem="IQb-8C-8f5" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="zvK-lr-ADb"/>
@@ -116,6 +144,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Single" id="zA9-oj-ENj"/>
                     <connections>
+                        <outlet property="fixedWidthConstraint" destination="ROr-x7-5ZI" id="RAa-hQ-slx"/>
                         <outlet property="imageView" destination="IQb-8C-8f5" id="1y4-qc-bms"/>
                     </connections>
                 </viewController>
