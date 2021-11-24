@@ -9,17 +9,21 @@ import UIKit
 import WebKit
 
 public class RandomImageWebView: WKWebView {
+	/// Used to give the view an intrinsic content size
 	var imageSize = CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
+	public override var intrinsicContentSize: CGSize { imageSize }
 
-	public override init(frame: CGRect, configuration: WKWebViewConfiguration = WKWebViewConfiguration()) {
-		super.init(frame: frame, configuration: configuration)
-		imageSize = frame.size
+	/// Generate a random image with an intrinsic content size
+	public static func generateView(width: Int, height: Int) -> Self {
+		let view = Self()
+		view.imageSize = CGSize(width: width, height: height)
+		view.loadImage(width: width, height: height)
+
+		return view
 	}
 
-	required init?(coder: NSCoder) { super.init(coder: coder) }
-
-	public enum Error: Swift.Error {
-		case illegalCssColor(String)
+	public func loadImage(width: Int, height: Int) {
+		loadHTMLString(Self.imageDomString(width: width, height: height), baseURL: nil)
 	}
 
 	public static func imageUrl(width: Int, height: Int) -> URL {
@@ -48,23 +52,15 @@ public class RandomImageWebView: WKWebView {
 			</body
 		"""
 	}
-
-	public func loadImage(width: Int, height: Int) {
-		loadHTMLString(Self.imageDomString(width: width, height: height), baseURL: nil)
-	}
 }
 
 extension RandomImageWebView: ImageViewBackedByWebview {
-	public override var intrinsicContentSize: CGSize { imageSize }
-
 	public static func generate(width: Int, height: Int) -> ImageViewBackedByWebview {
-		let size = CGSize(width: width, height: height)
-		let frame = CGRect(origin: .zero, size: size)
-		let view = RandomImageWebView(frame: frame)
+		generateView(width: width, height: height)
+	}
 
-		view.loadImage(width: width, height: height)
-
-		return view
+	public enum Error: Swift.Error {
+		case illegalCssColor(String)
 	}
 
 	public func changeBackground(color: String, completionHandler: ((Bool, Swift.Error?) -> Void)? = nil) {

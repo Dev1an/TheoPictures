@@ -48,7 +48,7 @@
                     <connections>
                         <outlet property="column1" destination="zu9-zr-u0w" id="hJN-I9-Fkj"/>
                         <outlet property="column2" destination="vw1-Ex-vA9" id="CGs-yr-49o"/>
-                        <outlet property="columnStack" destination="FBP-WP-GAC" id="HV9-U6-rvY"/>
+                        <outlet property="columns" destination="FBP-WP-GAC" id="HV9-U6-rvY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7U-ay-ymw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
